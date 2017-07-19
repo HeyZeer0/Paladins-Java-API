@@ -4,8 +4,9 @@ This project is in a Working in Progress status and more functions will be added
 
 Dependecies
 ========
-. JSON (org.json)
-. OkHTTP (com.squareup.okhttp3)
+ - JSON ([org.json](https://mvnrepository.com/artifact/org.json/json/20170516))
+ - OkHTTP ([com.squareup.okhttp](https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp/2.7.5))
+
 
 Usage example
 ========
