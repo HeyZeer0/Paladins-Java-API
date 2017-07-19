@@ -2,6 +2,11 @@
 This is a simple wrapper for HiRez paladins API.
 This project is in a Working in Progress status and more functions will be added soon.
 
+Dependecies
+========
+. JSON (org.json)
+. OkHTTP (com.squareup.okhttp3)
+
 Usage example
 ========
 ```java
