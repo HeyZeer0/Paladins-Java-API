@@ -1,5 +1,6 @@
 package net.heyzeer0.papi.profiles.requests;
 
+import net.heyzeer0.papi.exceptions.UnknowPlayerException;
 import org.json.JSONObject;
 
 /**
@@ -22,21 +23,24 @@ public class PaladinsPlayer {
     String join_date;
     String last_login;
 
-    public PaladinsPlayer(JSONObject json) {
-        System.out.println(json.toString());
-        id = json.getInt("Id");
-        leaves = json.getInt("Leaves");
-        level = json.getInt("Level");
-        losses = json.getInt("Losses");
-        mastery_level = json.getInt("MasteryLevel");
-        name = (String)json.get("Name");
-        status = (String)json.get("Personal_Status_Message");
-        region = (String)json.get("Region");
-        total_archievements = json.getInt("Total_Achievements");
-        total_worshippers = json.getInt("Total_Worshippers");
-        wins = json.getInt("Wins");
-        join_date = (String)json.get("Created_Datetime");
-        last_login = (String)json.get("Last_Login_Datetime");
+    public PaladinsPlayer(JSONObject json) throws UnknowPlayerException {
+        try{
+            id = json.getInt("Id");
+            leaves = json.getInt("Leaves");
+            level = json.getInt("Level");
+            losses = json.getInt("Losses");
+            mastery_level = json.getInt("MasteryLevel");
+            name = (String)json.get("Name");
+            status = (String)json.get("Personal_Status_Message");
+            region = (String)json.get("Region");
+            total_archievements = json.getInt("Total_Achievements");
+            total_worshippers = json.getInt("Total_Worshippers");
+            wins = json.getInt("Wins");
+            join_date = (String)json.get("Created_Datetime");
+            last_login = (String)json.get("Last_Login_Datetime");
+        }catch (Exception e) {
+            throw new UnknowPlayerException();
+        }
     }
 
     public int getID() {

@@ -55,6 +55,7 @@ public class PlayerChampion {
     public int getLosses() {
         return losses;
     }
+
     public int getMinionkills() {
         return minionkills;
     }
