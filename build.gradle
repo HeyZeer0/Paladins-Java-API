@@ -13,5 +13,4 @@ repositories {
 dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
     compile 'org.json:json:20170516'
-    compile 'com.google.guava:guava:22.0'
 }
