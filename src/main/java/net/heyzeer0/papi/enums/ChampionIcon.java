@@ -31,7 +31,7 @@ public enum ChampionIcon {
     BUCK("https://web2.hirez.com/paladins/wp-content/uploads/2015/09/Buck_NewPort_03.png"),
     EVIE("https://web2.hirez.com/paladins/wp-content/uploads/2016/07/0006_Evie.jpg"),
     LEX("https://web2.hirez.com/paladins/wp-content/uploads/2017/03/Steam_Profile_Lex_184.jpg"),
-    MEAVE("https://web2.hirez.com/paladins/wp-content/uploads/2017/02/Portrait_Maeve_184x184.jpg"),
+    MAEVE("https://web2.hirez.com/paladins/wp-content/uploads/2017/02/Portrait_Maeve_184x184.jpg"),
     SKYE("https://web2.hirez.com/paladins/wp-content/uploads/2015/09/Skye_NewPort_02.png"),
     ZHIN("https://web2.hirez.com/paladins/wp-content/uploads/2017/06/SteamProfile_Zhin.png"),
     ANDROXUS("https://web2.hirez.com/paladins/wp-content/uploads/2016/07/0004_Androxus.jpg");
