@@ -1,11 +1,18 @@
-# Paladins Java API - WIP
-This is a simple wrapper for HiRez paladins API.
+# Paladins Java API <img align="right" src="https://hzweb.hi-rezgame.net/paladins-web/wp-content/uploads/2016/06/cropped-2016-06-03-192x192.png" height="192" width="192">
+[![Build Status](http://ci.heyzeer0.cf/buildStatus/icon?job=Paladins%20Java%20API)](http://ci.heyzeer0.cf/job/Paladins%20Java%20API/) [![Version](https://api.bintray.com/packages/heyzeer0/maven/Paladins-Java-API/images/download.svg)]()</br>
+This is a simple wrapper for HiRez paladins API.</br>
 This project is in a Working in Progress status and more functions will be added soon.
 
-Dependecies
+Maven
 ========
- - JSON ([org.json](https://mvnrepository.com/artifact/org.json/json/20170516))
- - OkHTTP ([com.squareup.okhttp](https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp/2.7.5))
+Don't forget to add jcenter repository ;)
+```maven
+<dependency>
+  <groupId>net.heyzeer0.papi</groupId>
+  <artifactId>PaladinsAPI</artifactId>
+  <version>1.0.0_8</version>
+</dependency>
+```
 
 
 Usage example
