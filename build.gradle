@@ -3,7 +3,6 @@ import org.apache.tools.ant.filters.ReplaceTokens
 plugins {
     id 'com.jfrog.bintray' version '1.7.3'
     id 'java'
-    id 'maven'
     id 'maven-publish'
 }
 
@@ -116,7 +115,7 @@ String getProjectProperty(String propertyName)
 class Version {
     String major, minor, revision
 
-    String getBuild() {
+    static String getBuild() {
         System.getenv("BUILD_NUMBER") ?: System.getProperty("BUILD_NUMBER") ?: "DEV"
     }
 
