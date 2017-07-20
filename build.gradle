@@ -1,16 +1,126 @@
-group 'net.heyzeer0.papi'
-version '1.0'
+import org.apache.tools.ant.filters.ReplaceTokens
 
-apply plugin: 'java'
+plugins {
+    id 'com.jfrog.bintray' version '1.7.3'
+    id 'java'
+    id 'maven'
+    id 'maven-publish'
+}
+
+def versionObj = new Version(major: 1, minor: 0, revision: 0)
+
+group 'net.heyzeer0.papi'
+version "$versionObj"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
     compile 'org.json:json:20170516'
+}
+
+task sourcesForRelease(type: Copy) {
+    from 'src/main/java'
+    into 'build/filteredSrc'
+    filter(ReplaceTokens, tokens: [
+            versionMajor: versionObj.major.toString(),
+            versionMinor: versionObj.minor.toString(),
+            versionRevision: versionObj.revision.toString(),
+            versionBuild: versionObj.build.toString()
+    ])
+}
+
+compileJava {
+    source = sourcesForRelease.destinationDir
+    classpath = sourceSets.main.compileClasspath
+
+    options.encoding = 'UTF-8'
+
+    dependsOn sourcesForRelease
+}
+
+jar {
+    baseName = project.name
+    manifest {
+        attributes 'Implementation-Version': version
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from "${buildDir}/filteredSrc"
+}
+
+bintray {
+    user = bintrayUsername
+    key = bintrayApiKey
+    publications = ["BintrayRelease"]
+    pkg {
+        repo = 'maven'
+        name = 'Paladins-Java-API'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/HeyZeer0/Paladins-Java-API'
+        publish = true
+        version {
+            name = project.version
+            released = new Date()
+        }
+    }
+}
+
+publishing {
+    publications {
+        BintrayRelease(MavenPublication) {
+            from components.java
+            groupId group
+            artifactId archivesBaseName
+            version version
+            artifact sourcesJar
+        }
+    }
+}
+
+bintrayUpload {
+    dependsOn build
+
+    onlyIf { !getProjectProperty("bintrayUsername").empty }
+    onlyIf { !getProjectProperty("bintrayApiKey").empty }
+    onlyIf { Version.getBuild() != "DEV" }
+}
+
+build {
+    dependsOn clean
+    dependsOn jar
+    dependsOn sourcesJar
+
+    jar.mustRunAfter clean
+    sourcesJar.mustRunAfter jar
+}
+
+String getProjectProperty(String propertyName)
+{
+    String property = ""
+    if (hasProperty(propertyName))
+    {
+        property = this.properties[propertyName]
+    }
+    return property
+}
+
+class Version {
+    String major, minor, revision
+
+    String getBuild() {
+        System.getenv("BUILD_NUMBER") ?: System.getProperty("BUILD_NUMBER") ?: "DEV"
+    }
+
+    String toString() {
+        "${major}.${minor}.${revision}_$build"
+    }
 }
