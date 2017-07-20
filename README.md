@@ -53,3 +53,5 @@ Usage example
 
     }
 ```
+
+Paladins Logo is over copyright © by HiRez Studios so it is not my property.

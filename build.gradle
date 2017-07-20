@@ -115,7 +115,7 @@ String getProjectProperty(String propertyName)
 class Version {
     String major, minor, revision
 
-    static String getBuild() {
+    String getBuild() {
         System.getenv("BUILD_NUMBER") ?: System.getProperty("BUILD_NUMBER") ?: "DEV"
     }
 
