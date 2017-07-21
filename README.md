@@ -10,7 +10,7 @@ Don't forget to add the jcenter repository ;)
 <dependency>
   <groupId>net.heyzeer0.papi</groupId>
   <artifactId>PaladinsAPI</artifactId>
-  <version>1.0.0_8</version>
+  <version>1.0.0_14</version>
 </dependency>
 ```
 

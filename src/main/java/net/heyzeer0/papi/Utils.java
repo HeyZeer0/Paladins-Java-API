@@ -17,10 +17,10 @@ public class Utils {
             md.update(key.getBytes());
             byte bytes[] = md.digest();
 
-            for (byte bit : bytes) {
-                String hex = Integer.toHexString(0xff & bit);
-                if (hex.length() == 1) sb.append("0");
-                sb.append(hex);
+            for (byte b : bytes) {
+                String hx = Integer.toHexString(0xff & b);
+                if (hx.length() == 1) sb.append("0");
+                sb.append(hx);
             }
             return sb.toString();
         } catch (Exception ex) {

@@ -30,7 +30,6 @@ public class PlayerStatus {
         return match_id;
     }
 
-
     public enum Status {
 
         OFFLINE(0),
