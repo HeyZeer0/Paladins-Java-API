@@ -29,17 +29,14 @@ public class Session {
 
     public void createSession() throws SessionException {
         try{
-            String c = api.getHttpClient().newCall(new Request.Builder().url(
+            JSONObject json = new JSONObject(api.getHttpClient().newCall(new Request.Builder().url(
                     Utils.generateUrl("createsession", api, false)
-            ).build()).execute().body().string();
-            JSONObject json = new JSONObject(c);
+            ).build()).execute().body().string());
 
-            System.out.println(c);
 
             if(json.getString("ret_msg").equalsIgnoreCase("Approved")) {
                 session_id = json.getString("session_id");
                 this.time_left = System.currentTimeMillis();
-                System.out.println(session_id);
                 connected = true;
             }else{
                 throw new SessionException(json.getString("ret_msg"));
