@@ -7,7 +7,7 @@ import org.json.JSONObject;
  * Created by HeyZeer0 on 19/07/17.
  * Copyright © HeyZeer0 - 2016 ~ 2017
  */
-public class PlayerChampion {
+public class PaladinsChampion {
 
     int assist;
     int deaths;
@@ -21,7 +21,7 @@ public class PlayerChampion {
     String champion_id;
     String player_id;
 
-    public PlayerChampion(JSONObject obj) {
+    public PaladinsChampion(JSONObject obj) {
         assist = obj.getInt("Assists");
         deaths = obj.getInt("Deaths");
         kills = obj.getInt("Kills");
@@ -72,11 +72,11 @@ public class PlayerChampion {
         return worshippers;
     }
 
-    public String getChampion() {
+    public String getName() {
         return champion;
     }
 
-    public String getChampionID() {
+    public String getID() {
         return champion_id;
     }
 
@@ -86,7 +86,7 @@ public class PlayerChampion {
 
     @Override
     public String toString() {
-        return getChampion() + "|" + getChampionID() + "|" + getPlayerID() + "|" + getRank() + "|" + getWins() + "|" + getLosses() + "|" + getWorshippers() + "|" + getMinionkills() + "|" + getKills() + "|" + getDeaths() + "|" + getAssist();
+        return getName() + "|" + getID() + "|" + getPlayerID() + "|" + getRank() + "|" + getWins() + "|" + getLosses() + "|" + getWorshippers() + "|" + getMinionkills() + "|" + getKills() + "|" + getDeaths() + "|" + getAssist();
      }
 
 }

@@ -7,7 +7,8 @@ import net.heyzeer0.papi.exceptions.UnknowPlayerException;
 import net.heyzeer0.papi.profiles.Session;
 import net.heyzeer0.papi.profiles.requests.HiRezSession;
 import net.heyzeer0.papi.profiles.requests.PaladinsPlayer;
-import net.heyzeer0.papi.profiles.requests.PlayerChampion;
+import net.heyzeer0.papi.profiles.requests.PaladinsChampion;
+import net.heyzeer0.papi.profiles.requests.PlayerStatus;
 import okhttp3.Request;
 import org.json.JSONArray;
 
@@ -82,7 +83,7 @@ public class RequestManager {
         return new PaladinsPlayer(json.getJSONObject(0));
     }
 
-    public List<PlayerChampion> requestUserChampions(String nick) throws SessionException, IOException, UnknowPlayerException {
+    public List<PaladinsChampion> requestUserChampions(String nick) throws SessionException, IOException, UnknowPlayerException {
         JSONArray json = new JSONArray(api.getHttpClient().newCall(new Request.Builder().url(
                 Utils.generateUrl("getchampionranks", api, true) + "/" + nick
         ).build()).execute().body().string());
@@ -91,12 +92,24 @@ public class RequestManager {
             throw  new UnknowPlayerException();
         }
 
-        ArrayList<PlayerChampion> champions = new ArrayList<>();
+        ArrayList<PaladinsChampion> champions = new ArrayList<>();
         for(int i = 0; i < json.length(); i++) {
-            champions.add(new PlayerChampion(json.getJSONObject(i)));
+            champions.add(new PaladinsChampion(json.getJSONObject(i)));
         }
 
         return champions;
+    }
+
+    public PlayerStatus requestPlayerStatus(String nick) throws SessionException, IOException, UnknowPlayerException {
+        JSONArray json = new JSONArray(api.getHttpClient().newCall(new Request.Builder().url(
+                Utils.generateUrl("getplayerstatus", api, true) + "/" + nick
+        ).build()).execute().body().string());
+
+        if(json.length() <= 0) {
+            throw  new UnknowPlayerException();
+        }
+
+        return new PlayerStatus(json.getJSONObject(0));
     }
 
 }

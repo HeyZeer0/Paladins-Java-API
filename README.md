@@ -5,7 +5,7 @@ This project is in a Working in Progress status and more functions will be added
 
 Maven
 ========
-Don't forget to add jcenter repository ;)
+Don't forget to add the jcenter repository ;)
 ```maven
 <dependency>
   <groupId>net.heyzeer0.papi</groupId>
