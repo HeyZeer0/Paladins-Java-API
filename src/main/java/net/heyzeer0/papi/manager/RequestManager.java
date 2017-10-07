@@ -60,6 +60,7 @@ public class RequestManager {
     }
 
     public HiRezSession getDataUsed() throws IOException, SessionException {
+        getSession(true);
         if(session != null) {
             JSONArray json = new JSONArray(api.getHttpClient().newCall(new Request.Builder().url(Utils.generateUrl("getdataused", api, true)).build()).execute().body().string());
             if(json.length() <= 0) {
@@ -72,6 +73,7 @@ public class RequestManager {
     }
 
     public PaladinsPlayer requestPlayer(String nick) throws SessionException, IOException, UnknowPlayerException {
+        getSession(true);
         JSONArray json = new JSONArray(api.getHttpClient().newCall(new Request.Builder().url(
                 Utils.generateUrl("getplayer", api, true) + "/" + nick
         ).build()).execute().body().string());
@@ -84,6 +86,7 @@ public class RequestManager {
     }
 
     public List<PaladinsChampion> requestUserChampions(String nick) throws SessionException, IOException, UnknowPlayerException {
+        getSession(true);
         JSONArray json = new JSONArray(api.getHttpClient().newCall(new Request.Builder().url(
                 Utils.generateUrl("getchampionranks", api, true) + "/" + nick
         ).build()).execute().body().string());
@@ -101,6 +104,7 @@ public class RequestManager {
     }
 
     public PlayerStatus requestPlayerStatus(String nick) throws SessionException, IOException, UnknowPlayerException {
+        getSession(true);
         JSONArray json = new JSONArray(api.getHttpClient().newCall(new Request.Builder().url(
                 Utils.generateUrl("getplayerstatus", api, true) + "/" + nick
         ).build()).execute().body().string());
