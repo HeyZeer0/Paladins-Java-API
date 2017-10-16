@@ -2,6 +2,7 @@ package net.heyzeer0.papi.manager;
 
 import net.heyzeer0.papi.PaladinsAPI;
 import net.heyzeer0.papi.Utils;
+import net.heyzeer0.papi.enums.Language;
 import net.heyzeer0.papi.exceptions.SessionException;
 import net.heyzeer0.papi.exceptions.UnknowPlayerException;
 import net.heyzeer0.papi.profiles.Session;
