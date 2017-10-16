@@ -10,8 +10,11 @@ Don't forget to add the jcenter repository ;)
 <dependency>
   <groupId>net.heyzeer0.papi</groupId>
   <artifactId>PaladinsAPI</artifactId>
-  <version>1.0.0_14</version>
+  <version>+</version>
 </dependency>
+```
+```gradle
+compile 'net.heyzeer0.papi:PaladinsAPI:+'
 ```
 
 
