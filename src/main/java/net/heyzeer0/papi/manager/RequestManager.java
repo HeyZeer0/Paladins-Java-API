@@ -3,6 +3,7 @@ package net.heyzeer0.papi.manager;
 import net.heyzeer0.papi.PaladinsAPI;
 import net.heyzeer0.papi.Utils;
 import net.heyzeer0.papi.enums.Language;
+import net.heyzeer0.papi.enums.Platform;
 import net.heyzeer0.papi.exceptions.SessionException;
 import net.heyzeer0.papi.exceptions.UnknowPlayerException;
 import net.heyzeer0.papi.profiles.Session;
@@ -12,6 +13,7 @@ import net.heyzeer0.papi.profiles.requests.PaladinsChampion;
 import net.heyzeer0.papi.profiles.requests.PlayerStatus;
 import okhttp3.Request;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -80,6 +82,17 @@ public class RequestManager {
         ).build()).execute().body().string());
 
         if(json.length() <= 0) {
+            throw new UnknowPlayerException();
+        }
+
+        if(api.getPlatform() == Platform.SWITCH) {
+            for(int i = 0; i < json.length(); i++) {
+                JSONObject b = json.getJSONObject(i);
+                if(b.has("platform") && b.getString("platform").toLowerCase().equals("nintendo")) {
+                    return new PaladinsPlayer(b);
+                }
+            }
+
             throw new UnknowPlayerException();
         }
 
